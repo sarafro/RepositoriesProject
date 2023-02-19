@@ -1,0 +1,19 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+
+  .card {
+    min-width: 400px;
+
+    .header-image {
+      background-size: cover;
+    }
+
+    mat-card-content {
+      margin-top: 10px;
+    }
+  }
+}
