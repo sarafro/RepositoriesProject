@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Repository } from '../_models';
 import { RepositoryService } from '../_services';
 
@@ -7,15 +7,11 @@ import { RepositoryService } from '../_services';
   templateUrl: './repositories-cards.component.html',
   styleUrls: ['./repositories-cards.component.scss']
 })
-export class RepositoriesCardsComponent implements OnInit {
-
+export class RepositoriesCardsComponent{
   emptyStart: string = "assets/icons/bookmark.svg";
   fullStart: string = "assets/icons/start-fill.svg";
   @Input() repositories: Repository[] | undefined | null;
   constructor(private repositoryService: RepositoryService) { }
-
-  ngOnInit(): void {
-  }
 
   saveBookmark(item: Repository) {
     this.repositoryService.setBookmarksRepo(item);
