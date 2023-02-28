@@ -1,15 +1,7 @@
 namespace WebApi.Services;
 
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
-using System.Security.Claims;
-using System.Text;
 using System.Text.Json;
 using WebApi.Entities;
-using WebApi.Helpers;
-using WebApi.Models;
 
 public interface IRepositoryService
 {
