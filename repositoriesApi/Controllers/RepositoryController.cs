@@ -1,5 +1,6 @@
 namespace WebApi.Controllers;
 
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Helpers;
 using WebApi.Models;
@@ -16,11 +17,11 @@ public class RepositoryController : ControllerBase
     }
     
  [HttpGet("repositories")]
-    public IActionResult SearchRepositories(string query)
+    public async Task<IActionResult> SearchRepositories(string query)
     {
         if(string.IsNullOrEmpty(query))
             return NotFound();
-        var response = _repositoryService.SearchRepositories(query);
+        var response = await _repositoryService.SearchRepositories(query);
 
         return Ok(response);
     }

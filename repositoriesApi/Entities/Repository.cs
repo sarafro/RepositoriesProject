@@ -5,8 +5,16 @@ namespace WebApi.Entities;
 public class Repository
 {
     public int Id { get; set; }
-    public string FullName { get; set; }
-    public string HtmlUrl { get; set; }
-    public string AvatarUrl { get; set; }
+    public string Full_name { get; set; }
+    public string Html_url { get; set; }
+    public Owner Owner { get; set; }
+}
+public class Owner
+{
+    public string Avatar_url { get; set; }
+}
+public class Root
+{
+  public List<Repository> items { get; set; }
 }
 

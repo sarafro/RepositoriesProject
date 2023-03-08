@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { AppRoutingModule } from './app-routing.module';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
-import { RepositoriesCardsComponent } from './repositories-cards/repositories-cards.component';
+import { RepositoriesCardsComponent } from './repository-card/repository-card.component';
 
 @NgModule({
   declarations: [

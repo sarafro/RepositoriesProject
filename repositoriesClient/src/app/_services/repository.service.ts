@@ -47,9 +47,11 @@ export class RepositoryService {
       this.repositoriesBookmarks.push(item);
 
     this.repositoriesBookmarks$.next(this.repositoriesBookmarks);
+
+    this.repositories$.value.map(m => (m.id === item.id ? m.isBookmark = item.isBookmark : m));
+    this.repositories$.next(this.repositories$.value);
+
     localStorage.setItem('bookmarks-repo', JSON.stringify(this.repositoriesBookmarks$.value))
-
-
   }
 
   getBookmarksRepo(): Observable<Repository[]> {

@@ -2,12 +2,15 @@
 using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddControllers().AddJsonOptions(o => o.JsonSerializerOptions.);
 
 // add services to DI container
 {
     var services = builder.Services;
     services.AddCors();
     services.AddControllers();
+    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
     // configure strongly typed settings object
     services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));

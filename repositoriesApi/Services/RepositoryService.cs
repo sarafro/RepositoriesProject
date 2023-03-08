@@ -1,33 +1,45 @@
 namespace WebApi.Services;
 
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
-using System.Security.Claims;
-using System.Text;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using WebApi.Entities;
-using WebApi.Helpers;
 using WebApi.Models;
 
 public interface IRepositoryService
 {
-    List<Repository> SearchRepositories(string query);
+    Task<List<RepositoryResponse>> SearchRepositories(string query);
 }
 
 public class RepositoryService : IRepositoryService
 {
-    public List<Repository> SearchRepositories(string query)
+
+    private readonly IMapper _mapper;
+
+    public RepositoryService(IMapper mapper)
     {
-        List<Repository> deserializedData;
+        _mapper = mapper;
+    }
 
-        string path = @"C:\Users\User\Documents\repositoriesApi\DataRepo.json";
+    public async Task<List<RepositoryResponse>> SearchRepositories(string query)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            var productValue = new ProductInfoHeaderValue("Repositories", "1.0");
+            client.DefaultRequestHeaders.UserAgent.Add(productValue);
+            var response = await client.GetAsync("https://api.github.com/search/repositories?q=a");
+            var body = await response.Content.ReadAsStringAsync();
 
-        string jsonString = File.ReadAllText(path);
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            var root = JsonSerializer.Deserialize<Root>(body,options);
 
-        deserializedData = JsonSerializer.Deserialize<List<Repository>>(jsonString);
-        deserializedData = deserializedData.FindAll(res => res.FullName.Contains(query));
-        return deserializedData;
+            List<Repository> repositories = root.items;
+            return _mapper.Map<List<RepositoryResponse>>(repositories);
+        }
     }
 }
