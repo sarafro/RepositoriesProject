@@ -5,4 +5,6 @@
     <input matInput (keydown.enter)="searchRepo($event)">
   </mat-form-field>
   <app-repository-card [repositories]="repositories$ | async"></app-repository-card>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+  </mat-paginator>
 </div>

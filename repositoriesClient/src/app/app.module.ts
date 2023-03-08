@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { ErrorInterceptor, JwtInterceptor } from './_helpers';
 import { AppRoutingModule } from './app-routing.module';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
-import { RepositoriesCardsComponent } from './repository-card/repository-card.component';
+import { RepositoryCardComponent } from './repository-card/repository-card.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { RepositoriesCardsComponent } from './repository-card/repository-card.co
     SearchRepositoryComponent,
     LoginComponent,
     BookmarksComponent,
-    RepositoriesCardsComponent
+    RepositoryCardComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { RepositoriesCardsComponent } from './repository-card/repository-card.co
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatCardModule,
+    MatPaginatorModule,
     MatButtonModule,
     MatInputModule,
     AppRoutingModule

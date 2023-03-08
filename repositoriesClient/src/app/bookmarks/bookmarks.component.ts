@@ -14,5 +14,4 @@ export class BookmarksComponent {
   constructor(private repositoryService: RepositoryService) {
     this.BookmarksRepo$ = this.repositoryService.getBookmarksRepo()
   }
-
 }

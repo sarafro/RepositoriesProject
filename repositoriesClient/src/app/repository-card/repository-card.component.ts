@@ -7,8 +7,8 @@ import { RepositoryService } from '../_services';
   templateUrl: './repository-card.component.html',
   styleUrls: ['./repository-card.component.scss']
 })
-export class RepositoriesCardsComponent {
 
+export class RepositoryCardComponent {
   emptyStart: string = "assets/icons/bookmark.svg";
   fullStart: string = "assets/icons/start-fill.svg";
   @Input() repositories: Repository[] | undefined | null;

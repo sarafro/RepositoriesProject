@@ -13,8 +13,9 @@ public class Owner
 {
     public string Avatar_url { get; set; }
 }
-public class Root
-{
-  public List<Repository> items { get; set; }
+public class Root { 
+    public int Total_count { get; set; }
+    public bool Incomplete_results { get; set; }
+    public List<Repository> items { get; set; }
 }
 

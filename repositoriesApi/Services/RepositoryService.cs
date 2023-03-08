@@ -10,7 +10,7 @@ using WebApi.Models;
 
 public interface IRepositoryService
 {
-    Task<List<RepositoryResponse>> SearchRepositories(string query);
+    Task<RootResponse> SearchRepositories(string query);
 }
 
 public class RepositoryService : IRepositoryService
@@ -23,7 +23,7 @@ public class RepositoryService : IRepositoryService
         _mapper = mapper;
     }
 
-    public async Task<List<RepositoryResponse>> SearchRepositories(string query)
+    public async Task<RootResponse> SearchRepositories(string query)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -38,8 +38,11 @@ public class RepositoryService : IRepositoryService
             };
             var root = JsonSerializer.Deserialize<Root>(body,options);
 
-            List<Repository> repositories = root.items;
-            return _mapper.Map<List<RepositoryResponse>>(repositories);
+            RootResponse rootResponse = new RootResponse();
+            rootResponse.Total_count = root.Total_count;
+            rootResponse.Incomplete_results = root.Incomplete_results;
+            rootResponse.repositories = _mapper.Map<List<RepositoryResponse>>(root.items);
+            return _mapper.Map<RootResponse>(rootResponse);
         }
     }
 }
